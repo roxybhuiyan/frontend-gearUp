@@ -1,0 +1,1 @@
+import Link from 'next/link';export default function NotFound(){return <main className="shell" style={{paddingTop:130,textAlign:'center'}}><div className="eyebrow" style={{color:'#1d5a45'}}>404 — Off trail</div><h1 style={{fontSize:62,letterSpacing:-4}}>This path doesn’t exist.</h1><Link href="/" className="btn">Head home →</Link></main>}

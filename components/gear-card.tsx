@@ -1,0 +1,2 @@
+import Link from 'next/link'; import type { Gear } from '@/lib/data';
+export function GearCard({gear}:{gear:Gear}){return <Link href={`/gear/${gear.id}`} className="gear-card"><div className="gear-image" style={{backgroundImage:`url(${gear.images?.[0]})`}}><span className="pill">{gear.availability?'Available':'Booked'}</span></div><div className="gear-copy"><div className="gear-meta">{gear.category?.name || 'Outdoor gear'} · {gear.brand}</div><h3>{gear.name}</h3><div className="price">${Number(gear.pricePerDay).toFixed(0)} <small>/ day</small></div></div></Link>}

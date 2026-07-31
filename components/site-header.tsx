@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export function SiteHeader(){return <header className="shell nav"><Link href="/" className="brand">gear<i>up</i>.</Link><nav className="navlinks"><Link href="/gear">Browse gear</Link><a href="#how-it-works">How it works</a><a href="#why">Why GearUp</a></nav><div className="nav-actions"><Link href="/auth/login" className="btn light">Log in</Link><Link href="/auth/register" className="btn">Get started</Link></div></header>}
