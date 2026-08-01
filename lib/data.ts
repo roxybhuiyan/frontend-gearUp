@@ -1,11 +1,15 @@
-export type Gear = { id:string; name:string; brand:string; description:string; pricePerDay:number; availability:boolean; stock:number; condition:string; images:string[]; category?:{name:string}; provider?:{fullName:string}; specifications?:Record<string,string> };
+export type Gear = { id:string; name:string; brand:string; description:string; pricePerDay:number; availability:boolean; stock:number; condition:string; images:string[]; category?:{name:string}; provider?:{id?:string;fullName:string}; specifications?:Record<string,string> };
 export const fallbackGear: Gear[] = [
  {id:'trail-tent',name:'Summit 2P Tent',brand:'NOMAD',description:'A weather-ready two-person tent for quiet nights off the grid.',pricePerDay:18,availability:true,stock:4,condition:'NEW',category:{name:'Camping'},provider:{fullName:'The Trail House'},images:['https://images.unsplash.com/photo-1504851149312-7a075b496cc7?auto=format&fit=crop&w=900&q=80'],specifications:{Capacity:'2 people',Weight:'2.1 kg',Season:'3-season'}},
  {id:'board',name:'All-Mountain Board',brand:'RIDE',description:'A playful, all-terrain board built for every kind of snow day.',pricePerDay:27,availability:true,stock:3,condition:'GOOD',category:{name:'Winter Sports'},provider:{fullName:'Peak Rentals'},images:['https://images.unsplash.com/photo-1486911278844-a81c5267e227?auto=format&fit=crop&w=900&q=80'],specifications:{Length:'154 cm',Profile:'Hybrid camber',Level:'Intermediate'}},
  {id:'kayak',name:'Coastal Touring Kayak',brand:'WAVE',description:'A stable, comfortable touring kayak for lakes and sheltered coastlines.',pricePerDay:32,availability:true,stock:2,condition:'GOOD',category:{name:'Water Sports'},provider:{fullName:'Blue Current Co.'},images:['https://images.unsplash.com/photo-1472745437439-3bdbd89d4c90?auto=format&fit=crop&w=900&q=80'],specifications:{Length:'4.3 m',Capacity:'1 adult',Material:'Polyethylene'}},
  {id:'bike',name:'Ridge Trail Mountain Bike',brand:'CANYON',description:'A capable hardtail with confident handling for weekend trail missions.',pricePerDay:29,availability:true,stock:5,condition:'NEW',category:{name:'Cycling'},provider:{fullName:'The Trail House'},images:['https://images.unsplash.com/photo-1544191696-102dbdaeeaa9?auto=format&fit=crop&w=900&q=80'],specifications:{Frame:'Aluminium',Wheels:'29 inch',Gears:'12-speed'}}
 ];
-const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+// Browser calls stay same-origin through Next.js, avoiding CORS issues on any
+// local frontend port. Server-rendered requests can still reach the API directly.
+const API = typeof window === 'undefined'
+ ? (process.env.BACKEND_API_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api')
+ : '/api';
 export async function api<T>(path:string, options:RequestInit = {}, token?:string):Promise<T>{ const response=await fetch(`${API}${path}`,{...options,headers:{'Content-Type':'application/json',...(token?{Authorization:`Bearer ${token}`}:{}) ,...options.headers},cache:'no-store'}); const json=await response.json(); if(!response.ok) throw new Error(json.message || 'Something went wrong'); return json.data as T; }
 export async function getGear():Promise<Gear[]>{try{return await api<Gear[]>('/gear?limit=12')}catch{return fallbackGear}}
 export async function getGearById(id:string):Promise<Gear>{try{return await api<Gear>(`/gear/${id}`)}catch{return fallbackGear.find(g=>g.id===id) || fallbackGear[0]}}
