@@ -6,7 +6,7 @@ const backendApi =
   "http://localhost:5000/api";
 
 const nextConfig: NextConfig = {
-  images: { remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }] },
+  images: { remotePatterns: [{ protocol: "https", hostname: "**" }] },
   async rewrites() {
     return [{ source: "/api/:path*", destination: `${backendApi}/:path*` }];
   },

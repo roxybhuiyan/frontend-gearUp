@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Gear image placeholder">
+  <rect width="800" height="600" fill="#dfe9e2"/>
+  <path d="M0 450 190 260l105 105 120-150 225 235z" fill="#7da18d"/>
+  <circle cx="625" cy="145" r="55" fill="#d9ff5b"/>
+  <text x="400" y="535" fill="#1d5a45" font-family="Arial, sans-serif" font-size="34" font-weight="700" text-anchor="middle">GEARUP</text>
+</svg>

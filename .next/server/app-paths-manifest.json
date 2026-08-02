@@ -1,6 +1,6 @@
 {
-  "/dashboard/customer/page": "app/dashboard/customer/page.js",
-  "/page": "app/page.js",
+  "/dashboard/provider/gear/new/page": "app/dashboard/provider/gear/new/page.js",
   "/dashboard/provider/page": "app/dashboard/provider/page.js",
-  "/profile/page": "app/profile/page.js"
+  "/dashboard/provider/inventory/page": "app/dashboard/provider/inventory/page.js",
+  "/page": "app/page.js"
 }

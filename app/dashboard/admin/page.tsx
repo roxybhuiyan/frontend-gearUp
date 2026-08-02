@@ -1,1 +1,1 @@
-import {Dashboard} from '@/components/dashboard';export default function Admin(){return <Dashboard role="admin"/>}
+import {AdminDashboard} from '@/components/admin-dashboard';export default function Admin(){return <AdminDashboard/>}

@@ -1,0 +1,1 @@
+export default function Loading() { return <main className="shell section"><div className="skeleton title"/><div className="skeleton-grid">{Array.from({length: 4}, (_, i) => <div className="skeleton card" key={i}/>)}</div></main>; }
